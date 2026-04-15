@@ -1,4 +1,3 @@
-# text_formatter.py
 import os
 import json
 import re
