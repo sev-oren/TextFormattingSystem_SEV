@@ -42,7 +42,7 @@
 ### Запуск тестов
 
 ```bash
-    pytest test_text_formatter.py --cov=text_formatter
+    pytest test_text_formatter.py -v
 ```
 
 ### Проверка покрытия кода
