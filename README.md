@@ -16,56 +16,56 @@
 
 ### Клонирование репозитория
 
-{
+```bash
     git clone https://github.com/sev-oren/TextFormattingSystem_SEV.git
     cd TextFormattingSystem_SEV
-}
+```
 
 ### Установка зависимостей
 
-{
+```bash
     pip install -r requirements.txt
-}
+```
 
 Или вручную:
 
-{
+```bash
     pip install pytest pytest-cov
-}
+```
 
 ### Запуск демонстрации
 
-{
+```bash
     python complete_demo.py
-}
+```
 
 ### Запуск тестов
 
-{
+```bash
     pytest test_text_formatter.py --cov=text_formatter
-}
+```
 
 ### Проверка покрытия кода
 
-{
+```bash
     pytest test_text_formatter.py --cov=text_formatter --cov-report=term-missing
-}
+```
 
 Для просмотра HTML-отчёта:
 
-{
-    pytest test_text_formatter.py --cov=text_formatter --cov-report=html
-}
+```bash
+     pytest test_text_formatter.py --cov=text_formatter --cov-report=html
+```
 
 Затем открыть htmlcov/index.html в браузере
 
 ## Требования
 
-Python 3.8+
+- Python 3.8+
 
-pytest 7.0+
+- pytest 7.0+
 
-pytest-cov 4.0+
+- pytest-cov 4.0+
 
 ***
 ## Выполнила
