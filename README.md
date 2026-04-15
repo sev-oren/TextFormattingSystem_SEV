@@ -17,7 +17,7 @@
 ### Клонирование репозитория
 
 {
-    git clone <url-репозитория>
+    git clone https://github.com/sev-oren/TextFormattingSystem_SEV.git
     cd TextFormattingSystem_SEV
 }
 
