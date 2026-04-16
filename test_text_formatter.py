@@ -11,8 +11,7 @@ from text_formatter import (
 )
 
 
-# ============== ТЕСТЫ ФАЙЛОВОЙ СИСТЕМЫ ==============
-class TestFileSystem:
+class TestFileSystem:                       # ТЕСТЫ ФАЙЛОВОЙ СИСТЕМЫ
     def setup_method(self):
         self.temp_dir = tempfile.mkdtemp()
         self.fs = FileSystem(self.temp_dir)
@@ -41,8 +40,7 @@ class TestFileSystem:
         assert self.fs.load("delete.txt") is None
 
 
-# ============== ТЕСТЫ РЕДАКТОРА ==============
-class TestTextEditor:
+class TestTextEditor:                       # ТЕСТЫ РЕДАКТОРА
     def setup_method(self):
         self.temp_dir = tempfile.mkdtemp()
         self.fs = FileSystem(self.temp_dir)
@@ -97,8 +95,7 @@ class TestTextEditor:
         assert new_editor.content == "Saved content"
 
 
-# ============== ТЕСТЫ СЛОВ ==============
-class TestWord:
+class TestWord:                             # ТЕСТЫ СЛОВ
     def test_word_creation(self):
         w = Word("Hello")
         assert w.text == "Hello"
@@ -119,8 +116,7 @@ class TestWord:
         assert len(Word("Hello")) == 5
 
 
-# ============== ТЕСТЫ ПРЕДЛОЖЕНИЙ ==============
-class TestSentence:
+class TestSentence:                          # ТЕСТЫ ПРЕДЛОЖЕНИЙ
     def test_from_string(self):
         s = Sentence.from_string("Hello world!")
         assert len(s.words) == 2
@@ -135,8 +131,7 @@ class TestSentence:
         assert s.word_count() == 4
 
 
-# ============== ТЕСТЫ АБЗАЦЕВ ==============
-class TestParagraph:
+class TestParagraph:                         # ТЕСТЫ АБЗАЦЕВ
     def test_from_string(self):
         p = Paragraph.from_string("First sentence. Second sentence!")
         assert p.sentence_count() == 2
@@ -148,8 +143,7 @@ class TestParagraph:
         assert "world" in text
 
 
-# ============== ТЕСТЫ ТАБЛИЦ ==============
-class TestTable:
+class TestTable:                             # ТЕСТЫ ТАБЛИЦ
     def test_get_column_widths(self):
         headers = ["Name", "Age"]
         rows = [["Alice", "25"], ["Bob", "100"]]
@@ -167,8 +161,7 @@ class TestTable:
         assert "| 1 | 2 |" in rendered
 
 
-# ============== ТЕСТЫ ФОРМАТОРА ==============
-class TestFormatter:
+class TestFormatter:                         # ТЕСТЫ ФОРМАТОРА
     def setup_method(self):
         self.formatter = Formatter(page_width=40)
     
@@ -226,8 +219,7 @@ class TestFormatter:
         assert "X" in result
 
 
-# ============== ТЕСТЫ НАБОРЩИКА ==============
-class TestTypesetter:
+class TestTypesetter:                       # ТЕСТЫ НАБОРЩИКА
     def setup_method(self):
         self.typesetter = Typesetter(font_size=14, line_spacing=1.8)
     
@@ -262,8 +254,7 @@ class TestTypesetter:
         assert result is False
 
 
-# ============== ТЕСТЫ ПОЛНОЙ СИСТЕМЫ ==============
-class TestPublishingSystem:
+class TestPublishingSystem:                 # ТЕСТЫ ПОЛНОЙ СИСТЕМЫ
     def setup_method(self):
         self.system = PublishingSystem()
         self.temp_dir = tempfile.mkdtemp()
@@ -293,7 +284,7 @@ class TestPublishingSystem:
             json_path.unlink()
 
 
-# ============== ЗАПУСК ТЕСТОВ ==============
+# ЗАПУСК ТЕСТОВ
 if __name__ == "__main__":
     pytest.main([__file__, "-v", "--cov=text_formatter", "--cov-report=term-missing"])
     

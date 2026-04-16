@@ -158,11 +158,11 @@ def demo_formatter():
     """Демонстрация 3: Форматор"""
     ColorPrint.print_title("ЧАСТЬ 3: ФОРМАТОР")
     
-    ColorPrint.print_step("3.1", "Инициализация форматера")
+    ColorPrint.print_step("3.1", "Инициализация форматора")
     formatter = Formatter(page_width=60, page_height=50)
     print(f"  Ширина страницы: {formatter.page_width}")
     print(f"  Высота страницы: {formatter.page_height}")
-    ColorPrint.print_success("Форматер создан")
+    ColorPrint.print_success("Форматор создан")
     
     ColorPrint.print_step("3.2", "Разбивка на слова")
     text = "Привет, мир! Как дела?"

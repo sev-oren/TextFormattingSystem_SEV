@@ -7,8 +7,7 @@ from dataclasses import dataclass
 from datetime import datetime
 
 
-# ============== КОМПОНЕНТ 1: ФАЙЛОВАЯ СИСТЕМА ==============
-class FileSystem:
+class FileSystem:                           # ФАЙЛОВАЯ СИСТЕМА
     """Хранение текстовых файлов"""
     
     def __init__(self, base_path: str = "./documents"):
@@ -68,8 +67,7 @@ class FileSystem:
         return False
 
 
-# ============== КОМПОНЕНТ 2: РЕДАКТОР ТЕКСТА ==============
-class TextEditor:
+class TextEditor:                           # РЕДАКТОР ТЕКСТА
     """Редактирование текстовых файлов"""
     
     def __init__(self, file_system: FileSystem):
@@ -129,7 +127,7 @@ class TextEditor:
         return False
 
 
-# ============== ЭЛЕМЕНТЫ ТЕКСТА ==============
+# ЭЛЕМЕНТЫ ТЕКСТА 
 class Word:
     """Слово"""
     def __init__(self, text: str):
@@ -243,8 +241,7 @@ class Table:
         return "\n".join(lines)
 
 
-# ============== КОМПОНЕНТ 3: ФОРМАТОР ==============
-class Formatter:
+class Formatter:                              # ФОРМАТОР 
     """Форматирование текста: заголовки, абзацы, таблицы"""
     
     def __init__(self, page_width: int = 80, page_height: int = 60):
@@ -365,8 +362,7 @@ class Formatter:
         return "\n".join(result)
 
 
-# ============== КОМПОНЕНТ 4: НАБОРЩИК ==============
-class Typesetter:
+class Typesetter:                             # НАБОРЩИК
     """Преобразование форматированного текста в команды для вывода"""
     
     def __init__(self, font_size: int = 12, line_spacing: float = 1.5):
@@ -405,8 +401,7 @@ class Typesetter:
             return False
 
 
-# ============== ПОЛНАЯ СИСТЕМА ПУБЛИКАЦИИ ==============
-class PublishingSystem:
+class PublishingSystem:                      # ПОЛНАЯ СИСТЕМА ПУБЛИКАЦИИ
     """Объединение всех компонентов"""
     
     def __init__(self):
