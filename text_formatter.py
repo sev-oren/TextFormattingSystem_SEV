@@ -133,22 +133,22 @@ class Word:
     def __init__(self, text: str):
         self.text = text.strip()
     
-    def capitalize(self) -> 'Word':
+    def capitalize(self) -> 'Word':                # Метод делает первую букву заглавной, остальные строчными
         return Word(self.text.capitalize())
     
-    def upper(self) -> 'Word':
+    def upper(self) -> 'Word':                     # Метод преобразования всех букв в ЗАГЛАВНЫЕ
         return Word(self.text.upper())
     
-    def lower(self) -> 'Word':
+    def lower(self) -> 'Word':                     # Метод преобразования всех букв в строчные
         return Word(self.text.lower())
     
-    def get_text(self) -> str:
+    def get_text(self) -> str:                     # Метод-геттер для получения текста слова
         return self.text
     
-    def __len__(self):
+    def __len__(self):                             # Метод для получения длины слова
         return len(self.text)
     
-    def __repr__(self):
+    def __repr__(self):                            # Метод для строкового представления объекта
         return f"Word('{self.text}')"
 
 
@@ -158,18 +158,18 @@ class Sentence:
         self.words = words
     
     @classmethod
-    def from_string(cls, text: str):
+    def from_string(cls, text: str):               # Метод класса для создания предложения из строки
         word_texts = re.findall(r"\b\w+(?:['-]\w+)?\b", text)
         words = [Word(w) for w in word_texts]
         return cls(words)
     
-    def get_text(self) -> str:
+    def get_text(self) -> str:                    # Метод для получения текста предложения
         return " ".join(w.get_text() for w in self.words)
     
-    def word_count(self) -> int:
+    def word_count(self) -> int:                  # Метод для подсчёта количества слов
         return len(self.words)
     
-    def __repr__(self):
+    def __repr__(self):                           # Метод для строкового представления предложения
         return f"Sentence({self.words})"
 
 
@@ -179,7 +179,7 @@ class Paragraph:
         self.sentences = sentences
     
     @classmethod
-    def from_string(cls, text: str):
+    def from_string(cls, text: str):             # Метод класса для создания абзаца из строки
         # Разбиваем на предложения по .!?
         sentence_texts = re.split(r'([.!?])\s*', text)
         sentences = []
@@ -191,14 +191,14 @@ class Paragraph:
             sentences.append(Sentence.from_string(sentence_texts[0]))
         return cls(sentences)
     
-    def get_text(self) -> str:
+    def get_text(self) -> str:                   # Метод для получения текста абзаца
         texts = [s.get_text() for s in self.sentences]
         return " ".join(texts)
     
-    def sentence_count(self) -> int:
+    def sentence_count(self) -> int:             # Метод для подсчёта количества предложений
         return len(self.sentences)
     
-    def __repr__(self):
+    def __repr__(self):                          # Метод для строкового представления объекта
         return f"Paragraph({len(self.sentences)} sentences)"
 
 
@@ -223,7 +223,7 @@ class Table:
         # Ограничиваем ширину
         widths = [min(w, cell_width) for w in widths]
         
-        def format_row(row: List[str]) -> str:
+        def format_row(row: List[str]) -> str:           # Внутренняя функция для форматирования одной строки таблицы
             cells = []
             for i, cell in enumerate(row):
                 if i < len(widths):
@@ -248,12 +248,12 @@ class Formatter:                              # ФОРМАТОР
         self.page_width = page_width
         self.page_height = page_height
     
-    def split_into_words(self, text: str) -> List[Word]:
+    def split_into_words(self, text: str) -> List[Word]:        # Метод разбивки текста на объекты Word
         """Разбивка текста на слова"""
         words = re.findall(r"\b\w+(?:['-]\w+)?\b", text)
         return [Word(w) for w in words]
     
-    def split_into_sentences(self, text: str) -> List[Sentence]:
+    def split_into_sentences(self, text: str) -> List[Sentence]:  # Метод разбивки текста на объекты Sentence
         """Разбивка на предложения"""
         sentence_texts = re.split(r'([.!?])\s*', text)
         sentences = []
@@ -265,7 +265,7 @@ class Formatter:                              # ФОРМАТОР
             sentences.append(Sentence.from_string(sentence_texts[0]))
         return sentences
     
-    def split_into_paragraphs(self, text: str) -> List[Paragraph]:
+    def split_into_paragraphs(self, text: str) -> List[Paragraph]:  # Метод разбивки текста на объекты Paragraph
         """Разбивка на абзацы по двойным переносам строк"""
         paragraph_texts = re.split(r'\n\s*\n', text.strip())
         paragraphs = []
@@ -274,7 +274,7 @@ class Formatter:                              # ФОРМАТОР
                 paragraphs.append(Paragraph.from_string(p_text))
         return paragraphs
     
-    def wrap_line(self, words: List[Word], max_width: int) -> Tuple[List[Word], List[Word]]:
+    def wrap_line(self, words: List[Word], max_width: int) -> Tuple[List[Word], List[Word]]:   # Ключевой метод для переноса строк
         """Перенос строки: возвращает (строка, остаток)"""
         if not words:
             return [], []
@@ -301,7 +301,7 @@ class Formatter:                              # ФОРМАТОР
         
         return line, []
     
-    def format_paragraph(self, paragraph: Paragraph, indent: int = 0) -> str:
+    def format_paragraph(self, paragraph: Paragraph, indent: int = 0) -> str:   # Метод форматирования одного абзаца
         """Форматирование одного абзаца"""
         text = paragraph.get_text()
         words = self.split_into_words(text)
@@ -320,7 +320,7 @@ class Formatter:                              # ФОРМАТОР
         
         return "\n".join(lines)
     
-    def format_document(self, text: str, title: Optional[str] = None) -> str:
+    def format_document(self, text: str, title: Optional[str] = None) -> str:   # Метод форматирования всего документа
         """Форматирование всего документа"""
         result = []
         
@@ -338,11 +338,11 @@ class Formatter:                              # ФОРМАТОР
         
         return "\n".join(result)
     
-    def format_table(self, table: Table) -> str:
+    def format_table(self, table: Table) -> str:            # Метод форматирования таблицы
         """Форматирование таблицы"""
         return table.render(cell_width=self.page_width // 4)
     
-    def format_document_with_tables(self, text: str, tables: List[Table], title: Optional[str] = None) -> str:
+    def format_document_with_tables(self, text: str, tables: List[Table], title: Optional[str] = None) -> str:      # Метод форматирования документа с таблицами
         """Форматирование документа с таблицами"""
         result = []
         
@@ -369,7 +369,7 @@ class Typesetter:                             # НАБОРЩИК
         self.font_size = font_size
         self.line_spacing = line_spacing
     
-    def get_print_commands(self, formatted_text: str) -> List[str]:
+    def get_print_commands(self, formatted_text: str) -> List[str]:         # Метод генерации команд для печати/вывода
         """Генерация команд для печати"""
         commands = []
         lines = formatted_text.split('\n')
@@ -383,7 +383,7 @@ class Typesetter:                             # НАБОРЩИК
         commands.append("EJECT_PAGE")
         return commands
     
-    def render_to_file(self, formatted_text: str, output_path: str) -> bool:
+    def render_to_file(self, formatted_text: str, output_path: str) -> bool:    # Метод сохранения команд в JSON-файл
         """Сохранение в файл команд"""
         try:
             commands = self.get_print_commands(formatted_text)
