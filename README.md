@@ -48,16 +48,24 @@
 ### Проверка покрытия кода
 
 ```bash
-    pytest test_text_formatter.py --cov=text_formatter --cov-report=term-missing
+    coverage run -m pytest test_text_formatter.py  # тесты
+    coverage report -m
 ```
 
 Для просмотра HTML-отчёта:
 
 ```bash
-     pytest test_text_formatter.py --cov=text_formatter --cov-report=html
+    coverage html
+    start htmlcov/index.html
 ```
 
-Затем открыть htmlcov/index.html в браузере
+Затем откроется htmlcov/index.html в браузере.
+
+Очистить старую статистику:
+
+```bash
+    coverage erase
+```
 
 ## Требования
 
@@ -70,3 +78,4 @@
 ***
 ## Выполнила
 Степанова Е.В., гр. 5140904/50401
+ 
